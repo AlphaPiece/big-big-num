@@ -5,48 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/10 21:33:07 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/11 00:29:50 by Zexi Wang        ###   ########.fr       */
+/*   Created: 2019/02/11 19:39:11 by Zexi Wang         #+#    #+#             */
+/*   Updated: 2019/02/11 23:45:10 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "big_num_calc.h"
+/*
+** Precondition:
+**		1) n1, n2 contains only digit character
+**		2) n1 >= n2
+*/
 
-char	*add(char *n1, char *n2)
+char	**add(char *n1, char *n2)
 {
-	char	*result;
-	int		i;
-	int		j;
-	int		k;
-	int		num1;
-	int		num2;
-	int		carry;
-	int		remainder;
-	int		sum;
+	int			len1;
+	int			len2;
+	t_bignum	bn1;
+	t_bignum	bn2;
+	int			carry;
+	int			i;
+	int			j;
+	int			bound;
 
-	j = ft_strlen(n1);
-	k = ft_strlen(n2);
-	i = ft_max(2, j--, k--) + 1;
-	if (!(result = (char *)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	result[i--] = '\0';
-	result[0] = '0';
+	len1 = ft_strlen(n1);
+	len2 = ft_strlen(n2);
+	convert(n1, len1, bn1);
+	convert(n2, len2, bn2);
 	carry = 0;
-	while (j >= 0 || k >= 0 || carry > 0)
+	bound = PART_LEN * 10;
+	i = bn1->partlen - 1;
+	j = bn2->partlen - 1;
+	while (i >= 0 || j >= 0 || carry != 0)
 	{
-		num1 = (j >= 0) ? n1[j] - '0' : 0;
-		num2 = (k >= 0) ? n2[k] - '0' : 0;
-		remainder = (num1 + num2) % 10;
-		sum = remainder + carry;
-		carry = (num1 + num2) / 10;
-		if (sum >= 10)
+		bn1->num[i] += ((j >= 0) ? bn2->num[j] : 0) + carry;
+		if (bn1->num[i] > bound)
 		{
-			carry += sum / 10;
-			sum %= 10;
+			bn1->num[i] -= bound;
+			carry++;
 		}
-		result[i--] = sum + '0';
+		else
+			carry = 0;
+		i--;
 		j--;
-		k--;
 	}
-	return (result);
-}
+	return (rconvert(bn1));
+}			

@@ -5,22 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/10 22:16:40 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/11 00:31:40 by Zexi Wang        ###   ########.fr       */
+/*   Created: 2019/02/11 23:45:52 by Zexi Wang         #+#    #+#             */
+/*   Updated: 2019/02/11 23:47:16 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "big_num_calc.h"
 
-int		main(void)
+int	main(void)
 {
-	char	*n1 = "111111111111111111111111111111111";
-	char	*n2 = "111111111111111111111111111111110";
-	char	*result;
-	
-	result = add(n1, n2);
-	ft_printf("%s\n", result);
-	result = subtract(n1, n2);
-	ft_printf("%s\n", result);
+	char	**n;
+
+	n = add("100000", "1");
+	for (int i = 0; n[i]; i++)
+		ft_printf("%d\n", n[i]);
 	return (0);
 }
