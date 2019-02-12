@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   big_num_calc.h                                     :+:      :+:    :+:   */
+/*   bignum.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/10 22:25:58 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/11 23:23:15 by Zexi Wang        ###   ########.fr       */
+/*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
+/*   Updated: 2019/02/12 15:28:47 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BIG_NUM_CALC_H
-# define BIG_NUM_CALC_H
+#ifndef BIGNUM_H
+# define BIGNUM_H
 
 # include "libft.h"
 
-# define PART_LEN	9
-
-typedef struct	s_analysis
+typedef struct			s_numpart
 {
-	char		*max;
-	char		*min;
-	t_bool		is_negative;
-}				t_analysis;
-	
-t_bool			check(char *n);
-t_analysis		analyze(char *n1, char *n2);
+	int					val;
+	struct s_numpart	*next;
+}						t_numpart;
 
-typdef struct	s_bignum
+typedef struct			s_bignum
 {
-	int			*num;
-	int			partlen;
-}				t_bignum;
+	t_numpart			*head;
+	int					partlen;
+}						t_bignum;
 
-int				*convert(char *s, int len, int *partlen);
+t_numpart				*create_numpart(int val);
+t_numpart				*prepend_numpart(t_numpart *head, t_numpart *part);
 
-char			*add(char *n1, char *n2);
-char			*subtract(char *n1, char *n2);
+void					convert(char *s, int len, t_bignum *bn);
 
 #endif
