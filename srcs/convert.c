@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:22:20 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 15:23:06 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/12 16:37:37 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,18 @@ int         subconvert(char *s, int start, int len)
 void        convert(char *s, int len, t_bignum *bn)
 {
     int         i;
-    t_numpart   *new;
+    t_numpart   *part;
 
     i = len;
-    j = bn->partlen - 1;
     while (i - PART_LEN >= 0)
     {
-        new = create_numpart(subconvert(s, i - PART_LEN, PART_LEN));
-        bn->numlist = prepend_numpart(bn->numlist, new);
+        part = create_part(subconvert(s, i - PART_LEN, PART_LEN));
+        bn->head = prepend_part(bn->head, part);
         i -= PART_LEN;
     }
     if (i != 0)
     {
-        new = create_numpart(subconvert(s, 0, i));
-        bn->numlist = prepend_numpart(bn->numlist, new);
+        part = create_part(subconvert(s, 0, i));
+        bn->head = prepend_part(bn->head, part);
     }
 }
