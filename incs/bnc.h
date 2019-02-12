@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bignum.h                                           :+:      :+:    :+:   */
+/*   bnc.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 17:01:30 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/12 18:15:58 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ typedef struct			s_bignum
 }						t_bignum;
 
 t_numpart				*create_part(int val);
-t_numpart				*prepend_part(t_numpart *head, t_numpart *part);
-void					delete_all_parts(t_numpart *head);
+void					prepend_part(t_bignum *num, t_numpart *part);
+void					append_part(t_bignum *num, t_numpart *part);
+void					delete_all_parts(t_bignum *num);
+
+t_bignum				*create_num(void);
 
 void					convert(char *s, int len, t_bignum *bn);
 

@@ -6,11 +6,11 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 16:38:25 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 16:59:14 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/12 18:28:09 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bignum.h"
+#include "bnc.h"
 
 /*
 ** Precondition: n1 >= n2
@@ -41,9 +41,9 @@ void	add(t_bignum *n1, t_bignum *n2)
 			q = q->prev;
 		if (p)
 			p = p->prev;
-		else if (carry != 0)
+		if (!p && carry != 0)
 		{
-			n1->head = prepend_part(n1->head, create_part(1));
+			prepend_part(n1, create_part(1));
 			carry = 0;
 		}
 	}

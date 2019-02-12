@@ -6,11 +6,11 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:22:02 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 16:43:37 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/12 18:14:16 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bignum.h"
+#include "bnc.h"
 
 t_numpart   *create_part(int n)
 {
@@ -24,36 +24,38 @@ t_numpart   *create_part(int n)
 	return (part); 
 }
 
-t_numpart   *prepend_part(t_numpart *head, t_numpart *part)
+void		prepend_part(t_bignum *num, t_numpart *part)
 {
-    if (head)
+    t_numpart	*tmp;
+	
+	if (!num->head)
 	{
-        part->next = head;
-		head->prev = part;
+		num->head = part;
+		num->tail = part;
 	}
-    return (part);
+	else
+	{
+		tmp = num->head;
+		num->head = part;
+		part->next = tmp;
+		tmp->prev = part;
+	}
 }
 
-t_numpart	*append_part(t_numpart *tail, t_numpart *part)
+void		append_part(t_bignum *num, t_numpart *part)
 {
-	if (tail)
+	t_numpart	*tmp;
+
+	if (!num->tail)
 	{
-		tail->next = part;
-		part->prev = tail;
+		num->tail = part;
+		num->head = part;
 	}
-	return (part);
-}
-
-void		delete_all_parts(t_numpart *head)
-{
-	t_numpart	*next;
-
-	next = head->next;
-	free(head);
-	while (next)
+	else
 	{
-		head = next;
-		next = head->next;
-		free(head);
+		tmp = num->tail;
+		num->tail = part;
+		part->prev = tmp;
+		tmp->next = part;
 	}
 }
