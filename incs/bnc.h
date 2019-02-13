@@ -6,12 +6,12 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 18:15:58 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/12 21:53:31 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BIGNUM_H
-# define BIGNUM_H
+#ifndef BNC_H
+# define BNC_H
 
 # include "libft.h"
 
@@ -41,5 +41,6 @@ t_bignum				*create_num(void);
 void					convert(char *s, int len, t_bignum *bn);
 
 void					add(t_bignum *n1, t_bignum *n2);
+void					subtract(t_bignum *n1, t_bignum *n2);
 
 #endif

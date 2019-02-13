@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:23:10 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 18:28:31 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/12 21:52:19 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(int argc, char **argv)
 		bn2 = create_num();
 		convert(argv[1], ft_strlen(argv[1]), bn1);
 		convert(argv[2], ft_strlen(argv[2]), bn2);
-		add(bn1, bn2);
+		subtract(bn1, bn2);
 		for (numpart = bn1->head; numpart; numpart = numpart->next)
 			ft_printf("%04d", numpart->val);
 		ft_printf("\n");
