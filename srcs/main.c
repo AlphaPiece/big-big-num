@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:23:10 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/13 21:53:11 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/14 00:37:22 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		main(int argc, char **argv)
 {
 	t_bignum	*bn1;
 	t_bignum	*bn2;
-	t_numpart	*numpart;
+	t_numpart	*part;
 	t_compo		*compo_head;
 	t_compo		*compo;
 
@@ -27,9 +27,9 @@ int		main(int argc, char **argv)
 		convert(argv[1], ft_strlen(argv[1]), bn1);
 		convert(argv[2], ft_strlen(argv[2]), bn2);
 
-		compo_head = dismantle(bn1);
-		for (compo = compo_head; compo; compo = compo->next)
-			ft_printf("x: %d, e10: %d\n", compo->x, compo->e10);
+		shift_all_parts(bn1, 5);
+		for (part = bn1->head; part; part = part->next)
+			ft_printf("%04d\n", part->val);
 
 		delete_all_parts(bn1);
 		delete_all_parts(bn2);
