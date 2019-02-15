@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/14 22:37:46 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/14 23:46:45 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,20 @@ void					append_part(t_bignum *num, t_numpart *part);
 t_bignum				*create_num(void);
 t_bignum				*copy_num(t_bignum *num);
 int						get_part_no(t_bignum *num);
-void					shift_num(t_bignum *num, int shift);
 void					delete_num(t_bignum **num);
 void					print_num(t_bignum *num);
-
-void					convert(char *s, int len, t_bignum *bn);
-
-void					add(t_bignum *n1, t_bignum *n2);
-void					subtract(t_bignum *n1, t_bignum *n2);
 
 t_compo					*create_compo(int n, int e10);
 void					append_compo(t_compo **head, t_compo *new_compo);
 t_compo					*get_compo_lst(t_bignum *num);
+void					delete_compo_lst(t_compo **compo_head);
 
+void					convert(char *s, int len, t_bignum *bn);
+void					left_shift(t_bignum *num, int shift);
+void					right_shift(t_bignum *num, int shift);
+
+void					add(t_bignum *n1, t_bignum *n2);
+void					subtract(t_bignum *n1, t_bignum *n2);
 t_bignum				*multiply(t_bignum *n1, t_bignum *n2);
 
 #endif

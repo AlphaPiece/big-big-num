@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:39:04 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/14 22:47:30 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/15 00:08:53 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_bignum	*multiply(t_bignum *n1, t_bignum *n2)
 	while (compo)
 	{
 		cpy1 = copy_num(n1);
-		shift_num(cpy1, compo->e10);
+		left_shift(cpy1, compo->e10);
 		cpy2 = copy_num(cpy1);
 		i = 0;
 		while (++i < compo->x)
@@ -57,5 +57,6 @@ t_bignum	*multiply(t_bignum *n1, t_bignum *n2)
 		}
 		compo = compo->next;
 	}
+	delete_compo_lst(&compo_head);
 	return (product);
 }
