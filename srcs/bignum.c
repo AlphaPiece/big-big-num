@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:27:14 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/14 00:37:40 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/14 22:53:41 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 t_bignum	*create_num(void)
 {
 	return ((t_bignum *)ft_memalloc(sizeof(t_bignum)));
+}
+
+t_bignum	*copy_num(t_bignum *num)
+{
+	t_bignum	*cpy;
+	t_numpart	*part;
+	t_numpart	*new_part;
+
+	cpy = create_num();
+	if (cpy)
+	{
+		part = num->head;
+		while (part)
+		{
+			append_part(cpy, create_part(part->val));
+			part = part->next;
+		}
+	}
+	return (cpy);
 }
 
 int			get_part_no(t_bignum *num)
@@ -32,7 +51,7 @@ int			get_part_no(t_bignum *num)
 	return (part_no);
 }
 
-void		shift_all_parts(t_bignum *num, int shift)
+void		shift_num(t_bignum *num, int shift)
 {
 	t_numpart	*part;
 	int			small_shift;
@@ -62,19 +81,37 @@ void		shift_all_parts(t_bignum *num, int shift)
 				part = num->head;
 			}
 		}
-	while (shift - PART_LEN > 0)
+	while (shift - PART_LEN >= 0)
 	{
 		append_part(num, create_part(0));
 		shift -= PART_LEN;
 	}
 }	
 
-void        delete_all_parts(t_bignum *num)
+void		print_num(t_bignum *num)
+{
+	t_numpart	*part;
+
+	part = num->head;
+	while (part && part->val == 0)
+		part = part->next;
+	while (part)
+	{
+		if (part == num->head)
+			ft_printf("%d", part->val);
+		else
+			ft_printf("%04d", part->val);		
+		part = part->next;
+	}
+	ft_printf("\n");
+}
+
+void        delete_num(t_bignum **num)
 {
 	t_numpart	*curr;
     t_numpart   *next;
 
-	curr = num->head;
+	curr = (*num)->head;
     next = curr->next;
     free(curr);
     while (next)
@@ -83,4 +120,5 @@ void        delete_all_parts(t_bignum *num)
         next = curr->next;
         free(curr);
     }
+	*num = NULL;
 }

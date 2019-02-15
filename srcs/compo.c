@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:53:40 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/13 21:56:33 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/14 22:46:44 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	append_compo(t_compo **compo_head, t_compo *new_compo)
 	}
 }
 
-t_compo *dismantle(t_bignum *num)
+t_compo *get_compo_lst(t_bignum *num)
 {
     t_numpart   *part;
     t_compo     *compo_head;
@@ -58,7 +58,7 @@ t_compo *dismantle(t_bignum *num)
     i = -1;
     while (++i < part_no)
     {
-        e10 = (part_no - i) * PART_LEN;
+        e10 = (part_no - i) * PART_LEN - 1;
         val = part->val;
 		mod = ft_pow(10, PART_LEN - 1);
         j = -1;
