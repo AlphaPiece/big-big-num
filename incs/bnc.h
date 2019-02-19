@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/14 23:46:45 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/18 20:08:14 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct			s_compo
 t_numpart				*create_part(int val);
 void					prepend_part(t_bignum *num, t_numpart *part);
 void					append_part(t_bignum *num, t_numpart *part);
+void					remove_front_part(t_bignum *num);
+void					remove_back_part(t_bignum *num);
 
 t_bignum				*create_num(void);
 t_bignum				*copy_num(t_bignum *num);

@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:27:14 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/15 00:08:14 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/18 20:56:27 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		print_num(t_bignum *num)
 	t_numpart	*part;
 
 	part = num->head;
-	while (part && part->val == 0)
+	while (part && part->next && part->val == 0)
 		part = part->next;
 	while (part)
 	{

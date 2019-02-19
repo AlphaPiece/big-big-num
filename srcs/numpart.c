@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:22:02 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 18:14:16 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/18 20:08:17 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,47 @@ void		append_part(t_bignum *num, t_numpart *part)
 		num->tail = part;
 		part->prev = tmp;
 		tmp->next = part;
+	}
+}
+
+void		remove_front_part(t_bignum *num)
+{
+	t_numpart	*end;
+
+	if (num->head)
+	{
+		end = num->head->next;
+		free(num->head);
+		if (end)
+		{
+			end->prev = NULL;
+			num->head = end;
+		}
+		else
+		{
+			num->head = NULL;
+			num->tail = NULL;
+		}
+	}
+}
+
+void		remove_back_part(t_bignum *num)
+{
+	t_numpart	*end;
+
+	if (num->tail)
+	{
+		end = num->tail->prev;
+		free(num->tail);
+		if (end)
+		{
+			end->next = NULL;
+			num->tail = end;
+		}
+		else
+		{
+			num->head = NULL;
+			num->tail = NULL;
+		}
 	}
 }
