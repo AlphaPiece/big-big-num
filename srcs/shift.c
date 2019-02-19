@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 23:41:21 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/18 21:00:46 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/19 10:54:22 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	right_shift(t_bignum *num, int shift)
 		shift -= PART_LEN;
 	}
 	mul10_p = ft_pow(10, shift);
-	if (mul10_p > 0)
+	if (mul10_p > 0 && num->head)
 	{
 		mul10_q = ft_pow(10, PART_LEN - shift);
 		borrow = 0;

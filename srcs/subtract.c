@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:44:46 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 21:51:57 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/19 10:53:49 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,6 @@ void	subtract(t_bignum *n1, t_bignum *n2)
 		if (p)
 			p = p->prev;
 	}
+	while (n1->head && n1->head->next && n1->head->val == 0)
+		remove_front_part(n1);
 }

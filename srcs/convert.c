@@ -6,13 +6,13 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:22:20 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/12 21:34:44 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/19 09:44:48 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bnc.h"
 
-int         subconvert(char *s, int start, int len)
+int			subconvert(char *s, int start, int len)
 {
     int n;
     int i;
@@ -24,21 +24,25 @@ int         subconvert(char *s, int start, int len)
     return (n);
 }
 
-void        convert(char *s, int len, t_bignum *bn)
+t_bignum	*convert(char *s, int len)
 {
     int         i;
+	t_bignum	*num;
     t_numpart   *part;
 
+	if (!(num = (t_bignum *)ft_memalloc(sizeof(t_bignum))))
+		return (NULL);
     i = len;
     while (i - PART_LEN >= 0)
     {
         part = create_part(subconvert(s, i - PART_LEN, PART_LEN));
-        prepend_part(bn, part);
+        prepend_part(num, part);
         i -= PART_LEN;
     }
     if (i != 0)
     {
         part = create_part(subconvert(s, 0, i));
-        prepend_part(bn, part);
+        prepend_part(num, part);
     }
+	return (num);
 }

@@ -6,13 +6,13 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:53:40 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/14 23:52:17 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/19 10:20:39 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bnc.h"
 
-t_compo	*create_compo(int x, int e10)
+t_compo		*create_compo(int x, int e10)
 {
 	t_compo	*compo;
 
@@ -24,7 +24,7 @@ t_compo	*create_compo(int x, int e10)
 	return (compo);
 }
 
-void	append_compo(t_compo **compo_head, t_compo *new_compo)
+void		append_compo(t_compo **compo_head, t_compo *new_compo)
 {
 	t_compo	*compo;
 
@@ -39,7 +39,7 @@ void	append_compo(t_compo **compo_head, t_compo *new_compo)
 	}
 }
 
-t_compo *get_compo_lst(t_bignum *num)
+t_compo		*get_compo_lst(t_bignum *num)
 {
     t_numpart   *part;
     t_compo     *compo_head;
@@ -79,11 +79,41 @@ t_compo *get_compo_lst(t_bignum *num)
     return (compo_head);
 }
 
-void	delete_compo_lst(t_compo **compo_head)
+t_bignum	*revert_compo_lst(t_compo *compo_head)
+{
+	t_compo		*compo;
+	t_bignum	*n1;
+	t_bignum	*n2;
+
+	if (!compo_head)
+		return (NULL);
+	compo = compo_head;
+	if (!(n1 = init_num(compo->x)))
+		return (NULL);
+	left_shift(n1, compo->e10);
+	compo = compo->next;
+	while (compo)
+	{
+		if (!(n2 = init_num(compo->x)))
+		{
+			free(n1);
+			return (NULL);
+		}
+		left_shift(n2, compo->e10);
+		add(n1, n2);
+		free(n2);
+		compo = compo->next;
+	}
+	return (n1);
+}	
+
+void		delete_compo_lst(t_compo **compo_head)
 {
 	t_compo	*curr;
 	t_compo	*next;
 
+	if (!compo_head)
+		return ;
 	curr = *compo_head;
 	while (curr)
 	{

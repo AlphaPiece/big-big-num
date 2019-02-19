@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:27:14 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/18 20:56:27 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/19 10:29:04 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,24 @@
 
 t_bignum	*create_num(void)
 {
-	return ((t_bignum *)ft_memalloc(sizeof(t_bignum)));
+	return (ft_memalloc(sizeof(t_bignum)));
+}
+
+t_bignum	*init_num(int val)
+{
+	t_bignum	*num;
+	t_numpart	*part;
+	
+	if (!(num = create_num()))
+		return (NULL);
+	if (!(part = create_part(val)))
+	{
+		free(num);
+		return (NULL);
+	}
+	num->head = part;
+	num->tail = part;
+	return (num);
 }
 
 t_bignum	*copy_num(t_bignum *num)
@@ -36,25 +53,15 @@ t_bignum	*copy_num(t_bignum *num)
 	return (cpy);
 }
 
-int			get_part_no(t_bignum *num)
-{
-	t_numpart	*part;
-	int			part_no;
-
-	part = num->head;
-	part_no = 0;
-	while (part)
-	{
-		part = part->next;
-		part_no++;
-	}
-	return (part_no);
-}
-
 void		print_num(t_bignum *num)
 {
 	t_numpart	*part;
 
+	if (!num)
+	{
+		ft_printf("0\n");
+		return ;
+	}
 	part = num->head;
 	while (part && part->next && part->val == 0)
 		part = part->next;
@@ -74,6 +81,8 @@ void        delete_num(t_bignum **num)
 	t_numpart	*curr;
     t_numpart   *next;
 
+	if (!num || !*num)
+		return ;
 	curr = (*num)->head;
     while (curr)
     {

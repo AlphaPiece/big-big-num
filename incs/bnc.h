@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/18 20:08:14 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/19 10:32:06 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct			s_bignum
 {
 	t_numpart			*head;
 	t_numpart			*tail;
+	int					sign;
 }						t_bignum;
 
 typedef struct			s_compo
@@ -45,22 +46,28 @@ void					remove_front_part(t_bignum *num);
 void					remove_back_part(t_bignum *num);
 
 t_bignum				*create_num(void);
+t_bignum				*init_num(int val);
 t_bignum				*copy_num(t_bignum *num);
-int						get_part_no(t_bignum *num);
-void					delete_num(t_bignum **num);
 void					print_num(t_bignum *num);
+void					delete_num(t_bignum **num);
+
+int						get_part_no(t_bignum *num);
+int						get_digit_no(t_bignum *num);
+int						compare_num(t_bignum *n1, t_bignum *n2);
 
 t_compo					*create_compo(int n, int e10);
 void					append_compo(t_compo **head, t_compo *new_compo);
 t_compo					*get_compo_lst(t_bignum *num);
+t_bignum				*revert_compo_lst(t_compo *compo_head);
 void					delete_compo_lst(t_compo **compo_head);
 
-void					convert(char *s, int len, t_bignum *bn);
+t_bignum				*convert(char *s, int len);
 void					left_shift(t_bignum *num, int shift);
 void					right_shift(t_bignum *num, int shift);
 
 void					add(t_bignum *n1, t_bignum *n2);
 void					subtract(t_bignum *n1, t_bignum *n2);
 t_bignum				*multiply(t_bignum *n1, t_bignum *n2);
+t_bignum				*divide(t_bignum *n1, t_bignum *n2);
 
 #endif
