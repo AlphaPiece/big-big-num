@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   modulo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 15:23:10 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 11:28:26 by Zexi Wang        ###   ########.fr       */
+/*   Created: 2019/02/19 11:21:35 by Zexi Wang         #+#    #+#             */
+/*   Updated: 2019/02/19 11:27:21 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bnc.h"
 
-int		main(int argc, char **argv)
+void	modulo(t_bignum *n1, t_bignum *n2)
 {
-	t_bignum	*bn1;
-	t_bignum	*quotient;
-	t_bignum	*bn2;
-	t_numpart	*part;
-	t_compo		*compo_head;
-	t_compo		*compo;
-	t_bignum	*bn3;
+	int	len1;
+	int	len2;
+	int	len2_;
 
-	if (argc == 3)
+	len1 = get_digit_no(n1);
+	len2 = get_digit_no(n2);
+	len2_ = len1;
+	left_shift(n2, len1 - len2);
+	while (true)
 	{
-		bn1 = convert(argv[1], ft_strlen(argv[1]));
-		bn2 = convert(argv[2], ft_strlen(argv[2]));
-		
-		modulo(bn1, bn2);
-		print_num(bn1);
-
-		delete_num(&bn1);
-		delete_num(&bn2);
+		while (compare_num(n1, n2) < 0)
+		{
+			right_shift(n2, 1);
+			len2_--;
+		}
+		if (len2_ < len2)
+			break ;
+		while (compare_num(n1, n2) >= 0)
+			subtract(n1, n2);
 	}
-	return (0);
 }

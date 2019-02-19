@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 10:32:06 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/19 11:27:47 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ void					add(t_bignum *n1, t_bignum *n2);
 void					subtract(t_bignum *n1, t_bignum *n2);
 t_bignum				*multiply(t_bignum *n1, t_bignum *n2);
 t_bignum				*divide(t_bignum *n1, t_bignum *n2);
+void					modulo(t_bignum *n1, t_bignum *n2);
 
 #endif
