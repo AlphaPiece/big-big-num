@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 11:27:47 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/19 21:18:00 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include "libft.h"
 
-# define PART_LEN	4
+# define PART_LEN		4
+# define STACK_SPACE	1000
+
+# define IS_OP(x)	(x == '+' || x == '-' || x == '*' || x == '/' || x == '%')
 
 typedef struct			s_numpart
 {
@@ -38,6 +41,9 @@ typedef struct			s_compo
 	struct s_compo		*next;
 }						t_compo;
 
+/*
+** CORE
+*/
 
 t_numpart				*create_part(int val);
 void					prepend_part(t_bignum *num, t_numpart *part);
@@ -70,5 +76,26 @@ void					subtract(t_bignum *n1, t_bignum *n2);
 t_bignum				*multiply(t_bignum *n1, t_bignum *n2);
 t_bignum				*divide(t_bignum *n1, t_bignum *n2);
 void					modulo(t_bignum *n1, t_bignum *n2);
+
+/*
+** INTERFACE
+*/
+
+t_bool					valstack_empty(void);
+void					push_val(int val);
+int						pop_val(void);
+
+t_bool					opstack_empty(void);
+void					push_op(char op);
+char					pop_op(void);
+char					check_top_op(void);
+
+int						precedence(char op);
+int						apply_op(char op, int val1, int val2);
+void					parse_expr(char *expr);
+void					eval_expr(void);
+
+void					print_valstack(void);
+void					print_opstack(void);
 
 #endif
