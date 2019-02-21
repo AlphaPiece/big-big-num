@@ -1,6 +1,6 @@
 # BigBigNum
-A calculator called bnc which is able to compute large integers (arbitrary-precision integers).
 
+A calculator called bnc which is able to compute large integers (arbitrary-precision integers).
 
 Assume an int type in a computer can only contain a number between 0 and 999.
 Then we can contruct a big number by using linked list: Each node of the list contains 3 digits of the big number.
@@ -75,7 +75,7 @@ obtain the product of this multiplicaton.
 
 ## Division & Modulo
 
-Division and modulo are both based on subtraction. In fact, it is the reverse of the algorithm for multiplication.
+Division and modulo are both based on subtraction. In fact, the algorithm of division is the reverse of the algorithm of multiplication, and the algorithm of modulo is just a part of the algorithm of division.
 Say we want to calculate 151782 / 1234, we will do the following:
 
 ```
@@ -113,3 +113,30 @@ Another example, 5079 / 61.
 5079 / 61 = 83
 5079 % 61 = 16
 ```
+
+## Tests
+
+If you want to check if bnc actually works, you may run the following commands on your terminal (on macOS):
+
+**Addition Tests**
+- make test1
+
+**Subtraction Tests**
+- make test2
+
+**Mulitiplication Tests**
+- make test3
+
+**Division Tests**
+- make test4
+
+**Modulo Tests**
+- make test5
+
+**Mixed Operation Tests**
+- make test6
+
+**Error Tests**
+- make test7
+
+All these tests are in the directory 'tests' in root directory of the repository. Feel free to modify them and play around.
