@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 20:53:40 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 10:20:39 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/20 16:55:38 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_bignum	*revert_compo_lst(t_compo *compo_head)
 		}
 		left_shift(n2, compo->e10);
 		add(n1, n2);
-		free(n2);
+		delete_num(&n2);
 		compo = compo->next;
 	}
 	return (n1);

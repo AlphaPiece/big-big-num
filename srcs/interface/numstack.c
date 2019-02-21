@@ -1,45 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valstack.c                                         :+:      :+:    :+:   */
+/*   numstack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:54:57 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 21:03:00 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/21 10:17:18 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bnc.h"
 
-int		g_valstack[STACK_SPACE];
-int		g_valindex = 0;
+t_bignum	*g_numstack[STACK_SPACE];
+int			g_numindex = 0;
 
-t_bool	valstack_empty(void)
+t_bool		numstack_empty(void)
 {
-	return (g_valindex == 0);
+	return (g_numindex == 0);
 }
 
-void	push_val(int val)
+int			push_num(t_bignum *num)
 {
-	if (g_valindex + 1 >= STACK_SPACE)
-	{
-		ft_dprintf(2, "bnc: stack full\n");
-		exit(1);
-	}
-	g_valstack[g_valindex++] = val;
+	if (g_numindex + 1 >= STACK_SPACE)
+		return (ERROR);
+	g_numstack[g_numindex++] = num;
+	return (NORM);
 }
 
-int		pop_val(void)
+t_bignum	*pop_num(void)
 {
-	if (g_valindex - 1 < 0)
-		return (0);
-	return (g_valstack[--g_valindex]);
+	if (g_numindex - 1 < 0)
+		return (NULL);
+	return (g_numstack[--g_numindex]);
 }
 
-void	print_valstack(void)
+void		print_numstack(void)
 {
-	for (int i = 0; i < g_valindex; i++)
-		ft_printf("%d ", g_valstack[i]);
+	for (int i = 0; i < g_numindex; i++)
+		print_num(g_numstack[i]);
 	ft_printf("\n");
+}
+
+int			numstack_num_no(void)
+{
+	return (g_numindex);
+}
+
+void		clear_numstack(void)
+{
+	while (g_numindex - 1 >= 0)
+		delete_num(&g_numstack[--g_numindex]);
 }

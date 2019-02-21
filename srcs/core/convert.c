@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:22:20 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 09:44:48 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/20 16:00:36 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_bignum	*convert(char *s, int len)
 	t_bignum	*num;
     t_numpart   *part;
 
-	if (!(num = (t_bignum *)ft_memalloc(sizeof(t_bignum))))
+	if (!(num = create_num()))
 		return (NULL);
     i = len;
     while (i - PART_LEN >= 0)
@@ -44,5 +44,8 @@ t_bignum	*convert(char *s, int len)
         part = create_part(subconvert(s, 0, i));
         prepend_part(num, part);
     }
+	remove_leading_zero(num);
+	if (num->head == num->tail && num->head->val == 0)
+		num->is_zero = true;
 	return (num);
 }

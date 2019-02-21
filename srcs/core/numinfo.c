@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 21:02:41 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 14:50:11 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/21 09:57:18 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,31 @@ int		compare_num(t_bignum *n1, t_bignum *n2)
 		part2 = part2->next;
 	}
 	return (0);
+}
+
+t_bool	same_sign(t_bignum *n1, t_bignum *n2)
+{
+	return ((n1->is_neg && n2->is_neg) || !(n1->is_neg || n2->is_neg));
+}
+
+void	print_num(t_bignum *num)
+{
+    t_numpart   *part;
+
+    if (!num || num == (void *)ERROR)
+        return ;
+    if (num->is_neg && !num->is_zero)
+        ft_printf("-");
+    part = num->head;
+    while (part && part->next && part->val == 0)
+        part = part->next;
+    while (part)
+    {
+        if (part == num->head)
+            ft_printf("%d", part->val);
+        else
+            ft_printf("%0*d", PART_LEN, part->val);
+        part = part->next;
+    }
+    ft_printf("\n");
 }

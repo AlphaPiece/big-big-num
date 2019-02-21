@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:27:14 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 10:29:04 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/20 22:11:46 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ t_bignum	*init_num(int val)
 	}
 	num->head = part;
 	num->tail = part;
+	if (val < 0)
+		num->is_neg = true;
+	else if (val == 0)
+		num->is_zero = true;
 	return (num);
 }
 
@@ -53,27 +57,10 @@ t_bignum	*copy_num(t_bignum *num)
 	return (cpy);
 }
 
-void		print_num(t_bignum *num)
+void		remove_leading_zero(t_bignum *num)
 {
-	t_numpart	*part;
-
-	if (!num)
-	{
-		ft_printf("0\n");
-		return ;
-	}
-	part = num->head;
-	while (part && part->next && part->val == 0)
-		part = part->next;
-	while (part)
-	{
-		if (part == num->head)
-			ft_printf("%d", part->val);
-		else
-			ft_printf("%04d", part->val);		
-		part = part->next;
-	}
-	ft_printf("\n");
+	while (num->head && num->head->next && num->head->val == 0)
+		remove_front_part(num);
 }
 
 void        delete_num(t_bignum **num)
@@ -81,7 +68,7 @@ void        delete_num(t_bignum **num)
 	t_numpart	*curr;
     t_numpart   *next;
 
-	if (!num || !*num)
+	if (!num || !*num || *num == (void *)ERROR)
 		return ;
 	curr = (*num)->head;
     while (curr)
