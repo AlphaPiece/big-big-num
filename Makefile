@@ -6,15 +6,17 @@
 #    By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/10 22:24:46 by Zexi Wang         #+#    #+#              #
-#    Updated: 2019/02/21 11:06:19 by Zexi Wang        ###   ########.fr        #
+#    Updated: 2019/02/21 12:26:13 by Zexi Wang        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bnc
+CFLAG = -Wall -Wextra -Werror
 
 INTERFACE = apply.c expr.c numstack.c opstack.c compute.c
 CORE = numpart.c convert.c bignum.c add.c subtract.c compo.c shift.c \
 	   multiply.c numinfo.c divide.c modulo.c
+MAIN = srcs/bnc.c
 
 INTERFACE_DIR = ./srcs/interface/
 CORE_DIR = ./srcs/core/
@@ -25,7 +27,7 @@ INCS = -I incs -I libs/libft/incs
 LIBS = libs/libft/libft.a
 
 all:
-	@gcc -o $(NAME) srcs/main.c $(SRCS) $(LIBS) $(INCS)
+	@gcc $(CFLAG) -o $(NAME) $(MAIN) $(SRCS) $(LIBS) $(INCS)
 
 test1:
 	@gcc -o test1.out tests/basic_add_test.c $(SRCS) $(LIBS) $(INCS)

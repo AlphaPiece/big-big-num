@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 14:00:25 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 10:34:39 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/21 11:41:43 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int			parse_subexpr(void)
 int			parse_expr(char *expr)
 {
 	t_bignum	*num;
-	char		op;
 	int			i;
 	char		last_elem;
 
@@ -70,7 +69,6 @@ int			parse_expr(char *expr)
 		if ((expr[i] == '-' || expr[i] == '+') &&
 			(last_elem == '(' || IS_OP(last_elem)))
 		{
-//			ft_printf("branch 1\n");
 			last_elem = expr[i];
 			while (ft_isspace(expr[++i]))
 				;
@@ -85,7 +83,6 @@ int			parse_expr(char *expr)
 		}	
 		else if (ft_isdigit(expr[i]))
 		{
-//			ft_printf("branch 2\n");
 			if ((num = parse_num(expr, &i)))
 				if (!push_num(num))
 					return (ERROR);
@@ -93,14 +90,12 @@ int			parse_expr(char *expr)
 		}
 		else if (expr[i] == '(')
 		{
-//			ft_printf("branch 3\n");
 			if (!push_op(expr[i++]))
 				return (ERROR);
 			last_elem = '(';
 		}
 		else if (expr[i] == ')')
 		{
-//			ft_printf("branch 4\n");
 			while (!opstack_empty() && check_top_op() != '(')
 				if (!parse_subexpr())
 					return (ERROR);
@@ -111,7 +106,6 @@ int			parse_expr(char *expr)
 		}
 		else if (IS_OP(expr[i]))
 		{
-//			ft_printf("branch 5\n");
 			while (!opstack_empty() && 
 					precedence(check_top_op()) >= precedence(expr[i]))
 				if (!parse_subexpr())
@@ -122,9 +116,6 @@ int			parse_expr(char *expr)
 		}
 		else
 			i++;
-//		ft_printf("expr: %s\n", &expr[i]);
-//		ft_printf("opstack: ");	print_opstack();
-//		ft_printf("numstack: "); print_numstack();
 	}
 	while (!opstack_empty())
 		if (!parse_subexpr())

@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 23:29:50 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/20 22:51:43 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/21 11:42:38 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_bignum	*apply_add_multiply(char op, t_bignum **n1, t_bignum **n2)
 
 t_bignum	*apply_subtract(t_bignum **n1, t_bignum **n2)
 {
-	t_bignum	*n;
 	t_bool		is_neg;
 
 	if ((*n2)->is_zero)
@@ -102,7 +101,7 @@ t_bignum	*apply_divide_mudolo(char op, t_bignum **n1, t_bignum **n2)
 	{
 		delete_num(n1);
 		delete_num(n2);
-		return ((void *)ERROR);
+		return (NULL);
 	}
 	else if ((*n1)->is_zero)
 	{
@@ -144,8 +143,6 @@ t_bignum	*apply_op(char op, t_bignum **n1, t_bignum **n2)
 		n = apply_subtract(n1, n2);
 	else
 		n = apply_divide_mudolo(op, n1, n2);
-	if (n == (void *)ERROR)
-		return ((void *)ERROR);
 	if (n && n->head == n->tail && n->head->val == 0)
 		n->is_zero = true;
 	return (n);

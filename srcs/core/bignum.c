@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:27:14 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/20 22:11:46 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/21 11:37:12 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_bignum	*copy_num(t_bignum *num)
 {
 	t_bignum	*cpy;
 	t_numpart	*part;
-	t_numpart	*new_part;
 
 	cpy = create_num();
 	if (cpy)

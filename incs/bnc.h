@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 10:17:41 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/21 11:33:56 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-# define PART_LEN		4
+# define PART_LEN		9
 # define STACK_SPACE	1000
 # define ERROR			0
 # define NORM			1

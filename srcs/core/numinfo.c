@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 21:02:41 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 09:57:18 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/21 12:15:26 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	print_num(t_bignum *num)
 {
     t_numpart   *part;
 
-    if (!num || num == (void *)ERROR)
+    if (!num)
         return ;
     if (num->is_neg && !num->is_zero)
         ft_printf("-");
@@ -83,5 +83,4 @@ void	print_num(t_bignum *num)
             ft_printf("%0*d", PART_LEN, part->val);
         part = part->next;
     }
-    ft_printf("\n");
 }

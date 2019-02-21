@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bnc.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 15:23:10 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/19 11:28:26 by Zexi Wang        ###   ########.fr       */
+/*   Created: 2019/02/21 12:23:26 by Zexi Wang         #+#    #+#             */
+/*   Updated: 2019/02/21 12:27:08 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bnc.h"
 
-int		main(int argc, char **argv)
+int	main(void)
 {
-	t_bignum	*bn1;
-	t_bignum	*quotient;
-	t_bignum	*bn2;
-	t_numpart	*part;
-	t_compo		*compo_head;
-	t_compo		*compo;
-	t_bignum	*bn3;
-
-	if (argc == 3)
-	{
-		bn1 = convert(argv[1], ft_strlen(argv[1]));
-		bn2 = convert(argv[2], ft_strlen(argv[2]));
-		
-		modulo(bn1, bn2);
-		print_num(bn1);
-
-		delete_num(&bn1);
-		delete_num(&bn2);
-	}
+	ft_printf("bnc 1.0\n");
+	ft_printf("Created 21 Feb 2019, by AlphaPiece Studio.\n\n");
+	compute();
 	return (0);
 }

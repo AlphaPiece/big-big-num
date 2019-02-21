@@ -6,15 +6,11 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 21:15:17 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/20 16:57:38 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/21 12:22:07 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bnc.h"
-
-/*
-** Precondition: n1 > n2
-*/
 
 t_bignum	*divide(t_bignum *n1, t_bignum *n2)
 {
