@@ -1,8 +1,10 @@
 # BigBigNum
-A calculator that is able to compute big numbers.
+A calculator that is able to compute big numbers (arbitrary-precision numbers).
 
 Assume an int type in a computer can only contain a number between 0 and 999.
 Then we can contruct a big number by using linked list: Each node of the list contains 3 digits of the big number.
+
+## Addition & Subtraction
 
 ```
     123 000 000
@@ -36,6 +38,8 @@ signs, we can handle like below:
 1 - (-1) = 1 + 1
 1 + (-1) = 1 - 1
 ```
+
+## Multiplication
 
 Mutiplication is based on addition. Notice that
 
