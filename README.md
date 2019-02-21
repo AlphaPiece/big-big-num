@@ -140,3 +140,5 @@ If you want to check if bnc actually works, you may run the following commands o
 - make test7
 
 All these tests are in the directory 'tests' in root directory of the repository. Feel free to modify them and play around.
+
+### Enjoy!
