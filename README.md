@@ -116,29 +116,29 @@ Another example, 5079 / 61.
 5079 % 61 = 16
 ```
 
-## Tests
+## Test
 
 If you want to check if bnc actually works, you may run the following commands on your terminal (on macOS):
 
-**Addition Tests**
+**Addition Test**
 - make test1
 
-**Subtraction Tests**
+**Subtraction Test**
 - make test2
 
-**Mulitiplication Tests**
+**Mulitiplication Test**
 - make test3
 
-**Division Tests**
+**Division Test**
 - make test4
 
-**Modulo Tests**
+**Modulo Test**
 - make test5
 
-**Mixed Operation Tests**
+**Mixed Operation Test**
 - make test6
 
-**Error Tests**
+**Error Test**
 - make test7
 
 All these tests are in the directory 'tests' in root directory of the repository. Feel free to modify them and play around.
