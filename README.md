@@ -116,6 +116,11 @@ Another example, 5079 / 61.
 5079 % 61 = 16
 ```
 
+## Exponent & Factorial
+
+There are no special implementation for exponent and factorial in bnc -- they are heavily based on multiplication.
+
+
 ## Test
 
 If you want to check if bnc actually works, you may run the following commands on your terminal (on macOS):
