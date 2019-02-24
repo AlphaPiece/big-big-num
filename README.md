@@ -148,11 +148,14 @@ If you want to check if bnc actually works, you may run the following commands o
 **Modulo Test**
 - make test5
 
-**Mixed Operation Test**
+**Exponent & Factorial Test**
 - make test6
 
-**Error Test**
+**Mixed Operation Test**
 - make test7
+
+**Error Test**
+- make test8
 
 All these tests are in the directory 'tests' in root directory of the repository. Feel free to modify them and play around.
 
