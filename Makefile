@@ -6,7 +6,7 @@
 #    By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/10 22:24:46 by Zexi Wang         #+#    #+#              #
-#    Updated: 2019/02/21 12:26:13 by Zexi Wang        ###   ########.fr        #
+#    Updated: 2019/02/24 10:20:31 by Zexi Wang        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAG = -Wall -Wextra -Werror
 
 INTERFACE = apply.c expr.c numstack.c opstack.c compute.c
 CORE = numpart.c convert.c bignum.c add.c subtract.c compo.c shift.c \
-	   multiply.c numinfo.c divide.c modulo.c
+	   multiply.c numinfo.c divide.c modulo.c exponent.c
 MAIN = srcs/bnc.c
 
 INTERFACE_DIR = ./srcs/interface/
