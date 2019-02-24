@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_mix_test.c                                   :+:      :+:    :+:   */
+/*   basic_expo_fact_test.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 20:35:23 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/24 12:29:55 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/24 14:15:26 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,82 +15,82 @@
 int		main(void)
 {
 	t_bignum	*n;
-
-	parse_expr("2 * -(23 - 3)");
+	
+	parse_expr("10 ^ 100");
 	n = pop_num();
-	ft_printf("-40\n");
+	ft_printf("10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);
 
-	parse_expr("-(((32))) - -(2 * 2 -2) / 2");
-	n = pop_num();
-	ft_printf("-31\n");
-	print_num(n); ft_printf("\n");
-	delete_num(&n);
-
-	parse_expr("123 -(-(32 - 2))");
-	n = pop_num();
-	ft_printf("153\n");
-	print_num(n); ft_printf("\n");
-	delete_num(&n);
-
-	parse_expr("50 - 45 * 14 % 2");
-	n = pop_num();
-	ft_printf("50\n");
-	print_num(n); ft_printf("\n");
-	delete_num(&n);
-
-	parse_expr("20 - 99 / (96 - 30 * (57 - 76) - 43 % 20) - 17");
-	n = pop_num();
-	ft_printf("3\n");
-	print_num(n); ft_printf("\n");
-	delete_num(&n);
-
-	parse_expr("-92");
-	n = pop_num();
-	ft_printf("-92\n");
-	print_num(n); ft_printf("\n");
-	delete_num(&n);
-
-	parse_expr("-0");
+	parse_expr("0^1");
 	n = pop_num();
 	ft_printf("0\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);
 
-	parse_expr("-2345 + 90");
+	parse_expr("32^0");
 	n = pop_num();
-	ft_printf("-2255\n");
+	ft_printf("1\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);
 
-	parse_expr("20+19*(13+59/(6+4)-97%11)-76");
+	parse_expr("-2^6");
 	n = pop_num();
-	ft_printf("115\n");
+	ft_printf("64\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);
 
-	parse_expr("86      -47            *(-26-75/(47-98/23)+17/(-         86  +          44*38))");
+	parse_expr("-(2^6)");
 	n = pop_num();
-	ft_printf("1355\n");
+	ft_printf("-64\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);
 
-	parse_expr("(1+ (((((1))))) / 2 *(323/32)*1)--1*1");
+	parse_expr("-2^5");
 	n = pop_num();
-	ft_printf("2\n");
+	ft_printf("-32\n");
+	print_num(n); ft_printf("\n");
+	delete_num(&n);
+
+	parse_expr("-(2^5)");
+	n = pop_num();
+	ft_printf("-32\n");
+	print_num(n); ft_printf("\n");
+	delete_num(&n);
+
+	parse_expr("-1     ^(23 - 23)");
+	n = pop_num();
+	ft_printf("1\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);	
 
-	parse_expr("(1-2*023/1 + (9*2)%5+(12)-1123*(3-5)) + -0");
+	parse_expr("0!");
 	n = pop_num();
-	ft_printf("2216\n");
+	ft_printf("1\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);
 
-	parse_expr("1- 2 * 2 + 2 / 2 + (1+2 )*2 %1 -(123 * 23 -4)");
+	parse_expr("1!");
 	n = pop_num();
-	ft_printf("-2827\n");
+	ft_printf("1\n");
+	print_num(n); ft_printf("\n");
+	delete_num(&n);
+
+	parse_expr("100!");
+	n = pop_num();
+	ft_printf("93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000\n");
+	print_num(n); ft_printf("\n");
+	delete_num(&n);
+
+	parse_expr("5 * 50!");
+	n = pop_num();
+	ft_printf("152070466008566890218063040830323844221888207844802560000000000000\n");
+	print_num(n); ft_printf("\n");
+	delete_num(&n);
+
+	parse_expr("-(25 * 2)!");
+	n = pop_num();
+	ft_printf("-30414093201713378043612608166064768844377641568960512000000000000\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);
 

@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 23:29:50 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 11:42:38 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/24 12:40:17 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ t_bignum	*apply_add_multiply(char op, t_bignum **n1, t_bignum **n2)
 			n = multiply(*n1, *n2);
 			if (!same_sign(*n1, *n2))
 				n->is_neg = true;
+			else
+				n->is_neg = false;
 		}
 		delete_num(n1);
 		delete_num(n2);
@@ -133,6 +135,42 @@ t_bignum	*apply_divide_mudolo(char op, t_bignum **n1, t_bignum **n2)
 	}
 }
 
+t_bignum	*apply_exponent(t_bignum **n1, t_bignum **n2)
+{
+	t_bignum	*n;
+
+	if (get_digit_no(*n2) > EXPO_LIMIT || (*n2)->is_neg)
+	{
+		delete_num(n1);
+		delete_num(n2);
+		return (NULL);
+	}
+	else
+	{
+		n = exponent(*n1, (*n2)->head->val);
+		delete_num(n1);
+		delete_num(n2);
+		return (n);
+	}
+}	
+
+t_bignum	*apply_factorial(t_bignum **n)
+{
+	t_bignum	*m;
+
+	if (get_digit_no(*n) > FACT_LIMIT || (*n)->is_neg)
+	{
+		delete_num(n);
+		return (NULL);
+	}
+	else
+	{
+		m = factorial((*n)->head->val);
+		delete_num(n);
+		return (m);
+	}
+}
+
 t_bignum	*apply_op(char op, t_bignum **n1, t_bignum **n2)
 {
 	t_bignum	*n;
@@ -141,8 +179,10 @@ t_bignum	*apply_op(char op, t_bignum **n1, t_bignum **n2)
 		n = apply_add_multiply(op, n1, n2);
 	else if (op == '-')
 		n = apply_subtract(n1, n2);
-	else
+	else if (op == '/' || op == '%')
 		n = apply_divide_mudolo(op, n1, n2);
+	else
+		n = apply_exponent(n1, n2);
 	if (n && n->head == n->tail && n->head->val == 0)
 		n->is_zero = true;
 	return (n);

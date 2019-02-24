@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:15:18 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/24 10:20:08 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/24 14:41:21 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@
 
 # define PART_LEN		9
 # define STACK_SPACE	1000
+# define EXPO_LIMIT		9
+# define FACT_LIMIT		4
 # define ERROR			0
 # define NORM			1
 
-# define IS_OP(x)	(x == '+' || x == '-' || x == '*' || x == '/' || x == '%')
+# define IS_OP(x)	(x == '+' || x == '-' || x == '*' || x == '/' || x == '%' \
+					|| x == '^' || x == '!') 
 
 typedef struct			s_numpart
 {
@@ -103,6 +106,7 @@ char					check_top_op(void);
 void					clear_opstack(void);
 
 int						precedence(char op);
+t_bignum				*apply_factorial(t_bignum **n);
 t_bignum				*apply_op(char op, t_bignum **n1, t_bignum **n2);
 int						parse_expr(char *expr);
 

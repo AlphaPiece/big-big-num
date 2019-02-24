@@ -6,7 +6,7 @@
 #    By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/10 22:24:46 by Zexi Wang         #+#    #+#              #
-#    Updated: 2019/02/24 10:20:31 by Zexi Wang        ###   ########.fr        #
+#    Updated: 2019/02/24 12:35:19 by Zexi Wang        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAG = -Wall -Wextra -Werror
 
 INTERFACE = apply.c expr.c numstack.c opstack.c compute.c
 CORE = numpart.c convert.c bignum.c add.c subtract.c compo.c shift.c \
-	   multiply.c numinfo.c divide.c modulo.c exponent.c
+	   multiply.c numinfo.c divide.c modulo.c exponent.c factorial.c
 MAIN = srcs/bnc.c
 
 INTERFACE_DIR = ./srcs/interface/
@@ -55,14 +55,19 @@ test5:
 	@rm -rf test5.out
 
 test6:
-	@gcc -o test6.out tests/basic_mix_test.c $(SRCS) $(LIBS) $(INCS)
+	@gcc -o test6.out tests/basic_expo_fact_test.c $(SRCS) $(LIBS) $(INCS)
 	@./test6.out
 	@rm -rf test6.out
 
 test7:
-	@gcc -o test7.out tests/basic_error_test.c $(SRCS) $(LIBS) $(INCS)
+	@gcc -o test7.out tests/basic_mix_test.c $(SRCS) $(LIBS) $(INCS)
 	@./test7.out
 	@rm -rf test7.out
+
+test8:
+	@gcc -o test8.out tests/basic_error_test.c $(SRCS) $(LIBS) $(INCS)
+	@./test8.out
+	@rm -rf test8.out
 
 
 fclean:

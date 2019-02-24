@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:54:57 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 10:17:18 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/24 14:08:01 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ t_bignum	*pop_num(void)
 void		print_numstack(void)
 {
 	for (int i = 0; i < g_numindex; i++)
+	{
 		print_num(g_numstack[i]);
+		ft_printf(" ");
+	}
 	ft_printf("\n");
 }
 

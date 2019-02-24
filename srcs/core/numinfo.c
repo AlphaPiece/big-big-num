@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 21:02:41 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 12:15:26 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/24 12:56:16 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ int		get_part_no(t_bignum *num)
 
 int		get_digit_no(t_bignum *num)
 {
-	return (get_part_no(num) * PART_LEN + ft_numlen(num->head->val));
+	int	part_no;
+
+	part_no = get_part_no(num);
+	if (part_no > 1)
+		return ((part_no - 1) * PART_LEN + ft_numlen(num->head->val));
+	return (ft_numlen(num->head->val));
 }
 
 int		compare_num(t_bignum *n1, t_bignum *n2)

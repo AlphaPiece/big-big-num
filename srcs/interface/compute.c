@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 16:27:46 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 12:27:39 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/24 11:52:17 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_bool	is_valid_char(char c)
 {
 	return (ft_isspace(c) || c == 37 || (c >= 40 && c <= 43) || c == 45 ||
-			(c >= 47 && c <= 57));
+			(c >= 47 && c <= 57) || c == 94 || c == 33);
 }
 
 void	compute(void)

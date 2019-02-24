@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 14:00:25 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 11:41:43 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/24 14:38:54 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		precedence(char op)
 		return (1);
 	else if (op == '*' || op == '/' || op == '%')
 		return (2);
+	else if (op == '^' || op == '!')
+		return (3);
 	return (0);
 }
 
@@ -40,15 +42,24 @@ int			parse_subexpr(void)
 	char		op;
 	t_bignum	*n;
 
-	if (!(n2 = pop_num()))
-		return (ERROR);
-	if (!(n1 = pop_num()))
-		return (ERROR);
 	if (!(op = pop_op()))
 		return (ERROR);
-	if (!(n = apply_op(op, &n1, &n2)))
+	if (!(n2 = pop_num()))
 		return (ERROR);
-	push_num(n);
+	if (op == '!')
+	{
+		if (!(n = apply_factorial(&n2)))
+			return (ERROR);
+	}
+	else
+	{
+		if (!(n1 = pop_num()))
+			return (ERROR);
+		if (!(n = apply_op(op, &n1, &n2)))
+			return (ERROR);
+	}
+	if (!push_num(n))
+		return (ERROR);
 	return (NORM);
 }
 
@@ -72,14 +83,23 @@ int			parse_expr(char *expr)
 			last_elem = expr[i];
 			while (ft_isspace(expr[++i]))
 				;
-			if ((num = parse_num(expr, &i)))
+			if (expr[i] == '(')
+			{
+				num = init_num(0);
+				if (!push_num(num) || !push_op('-'))
+					return (ERROR);
+				last_elem = '-';
+			}
+			else if ((num = parse_num(expr, &i)))
 			{
 				if (last_elem == '-')
 					num->is_neg = true;
 				if (!push_num(num))
 					return (ERROR);
+				last_elem = '0';
 			}
-			last_elem = '0';
+			else
+				return (ERROR);
 		}	
 		else if (ft_isdigit(expr[i]))
 		{
@@ -104,6 +124,15 @@ int			parse_expr(char *expr)
 			i++;
 			last_elem = ')';
 		}
+		else if (expr[i] == '!')
+		{
+			if (last_elem != '0' && last_elem != ')')
+				return (ERROR);
+			if (!push_op('!'))
+				return (ERROR);
+			i++;
+			last_elem = '0';
+		}			
 		else if (IS_OP(expr[i]))
 		{
 			while (!opstack_empty() && 

@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:27:14 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 11:37:12 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/24 12:25:20 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_bignum	*copy_num(t_bignum *num)
 	t_bignum	*cpy;
 	t_numpart	*part;
 
+	if (!num)
+		return (NULL);
 	cpy = create_num();
 	if (cpy)
 	{
@@ -52,6 +54,8 @@ t_bignum	*copy_num(t_bignum *num)
 			append_part(cpy, create_part(part->val));
 			part = part->next;
 		}
+		cpy->is_neg = num->is_neg;
+		cpy->is_zero = num->is_zero;
 	}
 	return (cpy);
 }
@@ -67,7 +71,7 @@ void        delete_num(t_bignum **num)
 	t_numpart	*curr;
     t_numpart   *next;
 
-	if (!num || !*num || *num == (void *)ERROR)
+	if (!num || !*num)
 		return ;
 	curr = (*num)->head;
     while (curr)
