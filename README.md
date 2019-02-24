@@ -118,7 +118,15 @@ Another example, 5079 / 61.
 
 ## Exponent & Factorial
 
-There are no special implementation for exponent and factorial in bnc -- they are heavily based on multiplication.
+The algorithms for exponent and factorial in bnc are not special at all -- they are heavily based on multiplication.
+
+```
+23^15 = (23^5)^3 = (23 * 23 * 23 * 23 * 23)^3 = 6436343^3 = 6436343 * 6436343 * 6436343 = 266635235464391245607
+
+20! = 1 * 2 * ... * 19 * 20 = 2432902008176640000
+```
+
+There is a little trick to avoid doing some redundant calculations in exponent. But for factorial, bnc has to multiply them one by one.
 
 
 ## Test
