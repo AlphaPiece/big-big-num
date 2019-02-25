@@ -126,7 +126,7 @@ The algorithms for exponent and factorial in bnc are not special at all -- they 
 20! = 1 * 2 * ... * 19 * 20 = 2432902008176640000
 ```
 
-There is a little trick to avoid doing some redundant calculations in exponent. But for factorial, bnc has to multiply them one by one.
+There is a little trick to avoid doing some redundant calculations in exponent. But for factorial, bnc has to multiply every number one by one.
 
 
 ## Test
