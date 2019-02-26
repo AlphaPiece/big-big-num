@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 12:57:34 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/26 12:57:39 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/26 13:05:09 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	 handle_digit(char *expr, int *i, char *last_elem, t_bignum **num)
 int	 handle_sign(char *expr, int *i, char *last_elem)
 {
 	t_bignum	*num;
-	int		 flag;
+	int		 	flag;
 
 	*last_elem = expr[*i];
 	while (ft_isspace(expr[++*i]))
@@ -42,7 +42,7 @@ int	 handle_sign(char *expr, int *i, char *last_elem)
 		return (NORM);
 	}
 	else
-	{;
+	{
 		if ((flag = handle_digit(expr, i, last_elem, &num)) == NORM)
 		{
 			num->is_neg = true;
@@ -69,7 +69,7 @@ int	 handle_bracket(int *i, char *last_elem)
 
 int	 handle_operator(char *expr, int *i, char *last_elem)
 {
-	int flag;
+	int	flag;
 
 	while (!opstack_empty() &&
 		   precedence(check_top_op()) >= precedence(expr[*i]))
