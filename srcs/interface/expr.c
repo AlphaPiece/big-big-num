@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/19 14:00:25 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/24 14:38:54 by Zexi Wang        ###   ########.fr       */
+/*   Created: 2019/02/26 12:57:54 by Zexi Wang         #+#    #+#             */
+/*   Updated: 2019/02/26 12:58:23 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,41 +33,42 @@ t_bignum	*parse_num(char *expr, int *i)
 	if (*i - j == 0)
 		return (NULL);
 	return (convert(&expr[j], *i - j));
-}	
+}
 
-int			parse_subexpr(void)
+int		 parse_subexpr(void)
 {
-	t_bignum	*n1;
-	t_bignum	*n2;
+	t_bignum	*num1;
+	t_bignum	*num2;
 	char		op;
-	t_bignum	*n;
+	t_bignum	*num;
 
 	if (!(op = pop_op()))
 		return (ERROR);
-	if (!(n2 = pop_num()))
+	if (!(num2 = pop_num()))
 		return (ERROR);
 	if (op == '!')
 	{
-		if (!(n = apply_factorial(&n2)))
+		if (!(num = apply_factorial(&num2)))
 			return (ERROR);
 	}
 	else
 	{
-		if (!(n1 = pop_num()))
+		if (!(num1 = pop_num()))
 			return (ERROR);
-		if (!(n = apply_op(op, &n1, &n2)))
+		if (!(num = apply_op(op, &num1, &num2)))
 			return (ERROR);
 	}
-	if (!push_num(n))
-		return (ERROR);
+	if (push_num(num) == OVERFLOW)
+		return (OVERFLOW);
 	return (NORM);
 }
 
-int			parse_expr(char *expr)
+int		parse_expr(char *expr)
 {
-	t_bignum	*num;
 	int			i;
 	char		last_elem;
+	int			flag;
+	t_bignum	*num;
 
 	i = 0;
 	last_elem = '(';
@@ -77,78 +78,48 @@ int			parse_expr(char *expr)
 			i++;
 		if (!expr[i])
 			break ;
-		if ((expr[i] == '-' || expr[i] == '+') &&
+		else if ((expr[i] == '-' || expr[i] == '+') &&
 			(last_elem == '(' || IS_OP(last_elem)))
 		{
-			last_elem = expr[i];
-			while (ft_isspace(expr[++i]))
-				;
-			if (expr[i] == '(')
-			{
-				num = init_num(0);
-				if (!push_num(num) || !push_op('-'))
-					return (ERROR);
-				last_elem = '-';
-			}
-			else if ((num = parse_num(expr, &i)))
-			{
-				if (last_elem == '-')
-					num->is_neg = true;
-				if (!push_num(num))
-					return (ERROR);
-				last_elem = '0';
-			}
-			else
-				return (ERROR);
-		}	
+			if ((flag = handle_sign(expr, &i, &last_elem)) != NORM)
+				return (flag);
+		}
 		else if (ft_isdigit(expr[i]))
 		{
-			if ((num = parse_num(expr, &i)))
-				if (!push_num(num))
-					return (ERROR);
-			last_elem = '0';
+			if ((flag = handle_digit(expr, &i, &last_elem, &num)) != NORM)
+				return (flag);
 		}
 		else if (expr[i] == '(')
 		{
-			if (!push_op(expr[i++]))
-				return (ERROR);
+			if (push_op(expr[i++]) == OVERFLOW)
+				return (OVERFLOW);
 			last_elem = '(';
 		}
 		else if (expr[i] == ')')
 		{
-			while (!opstack_empty() && check_top_op() != '(')
-				if (!parse_subexpr())
-					return (ERROR);
-			if (!pop_op())
-				return (ERROR);
-			i++;
-			last_elem = ')';
+			if ((flag = handle_bracket(&i, &last_elem)) != NORM)
+				return (flag);
 		}
 		else if (expr[i] == '!')
 		{
 			if (last_elem != '0' && last_elem != ')')
 				return (ERROR);
-			if (!push_op('!'))
-				return (ERROR);
+			if (push_op('!') == OVERFLOW)
+				return (OVERFLOW);
 			i++;
-			last_elem = '0';
-		}			
+			last_elem = '!';
+		}
 		else if (IS_OP(expr[i]))
 		{
-			while (!opstack_empty() && 
-					precedence(check_top_op()) >= precedence(expr[i]))
-				if (!parse_subexpr())
-					return (ERROR);
-			if (!push_op(expr[i]))
-				return (ERROR);
-			last_elem = expr[i++];
+			if ((flag = handle_operator(expr, &i, &last_elem)) != NORM)
+				return (flag);
 		}
 		else
 			i++;
 	}
 	while (!opstack_empty())
-		if (!parse_subexpr())
-			return (ERROR);
+		if ((flag = parse_subexpr()) != NORM)
+			return (flag);
 	if (numstack_num_no() != 1)
 		return (ERROR);
 	return (NORM);

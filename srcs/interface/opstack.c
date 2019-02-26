@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 16:13:27 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/21 10:13:20 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/26 12:05:36 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_bool	opstack_empty(void)
 int		push_op(char op)
 {
 	if (g_opindex + 1 >= STACK_SPACE)
-		return (ERROR);
+		return (OVERFLOW);
 	g_opstack[g_opindex++] = op;
 	return (NORM);
 }

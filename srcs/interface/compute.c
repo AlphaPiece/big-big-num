@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 16:27:46 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/24 11:52:17 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/26 12:24:27 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	compute(void)
 {
 	char		*line;
 	int			flag;
+	int			flag_;
 	int			i;
 	t_bool		is_invalid;
 	t_bignum	*num;
@@ -36,9 +37,12 @@ void	compute(void)
 				is_invalid = true;
 				break ;
 			}
-		if (is_invalid || !parse_expr(line))
+		if (is_invalid || (flag_ = parse_expr(line)) != NORM)
 		{
-			ft_printf("bnc: invalid input\n");
+			if (flag_ == ERROR)
+				ft_printf("bnc: invalid input\n");
+			else
+				ft_printf("bnc: too many operands or operators\n");
 			clear_numstack();
 			clear_opstack();
 		}

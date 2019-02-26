@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:54:57 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/24 14:08:01 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/02/26 12:05:16 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_bool		numstack_empty(void)
 int			push_num(t_bignum *num)
 {
 	if (g_numindex + 1 >= STACK_SPACE)
-		return (ERROR);
+		return (OVERFLOW);
 	g_numstack[g_numindex++] = num;
 	return (NORM);
 }

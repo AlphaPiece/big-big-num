@@ -6,14 +6,14 @@
 #    By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/10 22:24:46 by Zexi Wang         #+#    #+#              #
-#    Updated: 2019/02/24 12:35:19 by Zexi Wang        ###   ########.fr        #
+#    Updated: 2019/02/26 12:17:57 by Zexi Wang        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bnc
 CFLAG = -Wall -Wextra -Werror
 
-INTERFACE = apply.c expr.c numstack.c opstack.c compute.c
+INTERFACE = apply.c handler.c expr.c numstack.c opstack.c compute.c
 CORE = numpart.c convert.c bignum.c add.c subtract.c compo.c shift.c \
 	   multiply.c numinfo.c divide.c modulo.c exponent.c factorial.c
 MAIN = srcs/bnc.c
