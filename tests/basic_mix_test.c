@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 20:35:23 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/24 12:29:55 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/03/09 17:01:25 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,12 @@ int		main(void)
 	parse_expr("1- 2 * 2 + 2 / 2 + (1+2 )*2 %1 -(123 * 23 -4)");
 	n = pop_num();
 	ft_printf("-2827\n");
+	print_num(n); ft_printf("\n");
+	delete_num(&n);
+
+	parse_expr("2^6-6*2^5+15*2^4-30*2^3+45*2^2-36*2+34");
+	n = pop_num();
+	ft_printf("14\n");
 	print_num(n); ft_printf("\n");
 	delete_num(&n);
 

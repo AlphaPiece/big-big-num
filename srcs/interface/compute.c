@@ -6,7 +6,7 @@
 /*   By: Zexi Wang <twopieces0921@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 16:27:46 by Zexi Wang         #+#    #+#             */
-/*   Updated: 2019/02/26 12:24:27 by Zexi Wang        ###   ########.fr       */
+/*   Updated: 2019/03/05 22:53:33 by Zexi Wang        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	compute(void)
 			}
 		if (is_invalid || (flag_ = parse_expr(line)) != NORM)
 		{
-			if (flag_ == ERROR)
+			if (flag_ == ERROR || is_invalid)
 				ft_printf("bnc: invalid input\n");
 			else
 				ft_printf("bnc: too many operands or operators\n");
