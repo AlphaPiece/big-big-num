@@ -111,7 +111,7 @@ Another example, 5079 / 61.
 77 - 61 = 16 < 61
 
 
-5079 = 6100 * 8 + 610 * 3 + 16
+5079 = 610 * 8 + 61 * 3 + 16
 5079 / 61 = 83
 5079 % 61 = 16
 ```
@@ -126,7 +126,7 @@ The algorithms for exponent and factorial in bnc are not special at all -- they 
 20! = 1 * 2 * ... * 19 * 20 = 2432902008176640000
 ```
 
-There is a little trick to avoid doing some redundant calculations in exponent. But for factorial, bnc has to multiply every number one by one.
+You can see that there is a little trick to avoid doing some repetitive calculations in bnc's exponent. But for factorial, bnc has to multiply every number one by one.
 
 
 ## Test
