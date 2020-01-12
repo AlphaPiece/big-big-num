@@ -1,4 +1,4 @@
-# BigBigNum
+# Big Big Num
 
 A calculator called bnc which is able to compute large integers (arbitrary-precision integers).
 
