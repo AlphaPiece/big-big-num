@@ -6,7 +6,7 @@ A calculator called "bnc" which is able to compute large integers (arbitrary-pre
 
 I will explain the basic idea of the implementation of bnc in the following.
 
-Assume an int type in a computer can only contain a number between 0 and 999.
+To make the example simple and clear, let's assume an int type can only contain a number between 0 and 999.
 Then we can contruct a big number by using linked list: Each node of the list contains 3 digits of the big number.
 
 ## Addition & Subtraction
